@@ -19,7 +19,9 @@ def add_contact(request):
 def home(request):
     search_query = request.GET.get('search', '')
     if search_query:
-        contacts = Contact.objects.filter(Q(first_name__icontains=search_query) | Q(email__icontains=search_query))
+        contacts = Contact.objects.filter(Q(first_name__icontains=search_query) | 
+                                          Q(last_name__icontains=search_query) | 
+                                          Q(email__icontains=search_query))
     else:
         contacts = Contact.objects.all()
     return render(request, 'home.html', {'contacts': contacts})
