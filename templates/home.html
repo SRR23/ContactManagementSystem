@@ -1,0 +1,16 @@
+<form method="GET">
+    <input type="text" name="search" placeholder="Search by name or email">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    {% for contact in contacts %}
+    <li>
+        <a href="{% url 'contact_detail' contact.pk %}">{{ contact.first_name }}</a> - {{ contact.email }} - {{ contact.phone_number }}
+        <a href="{% url 'edit_contact' contact.pk %}">Edit</a>
+        <a href="{% url 'delete_contact' contact.pk %}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'add_contact' %}">Add New Contact</a>
